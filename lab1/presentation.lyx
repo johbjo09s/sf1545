@@ -1,0 +1,1629 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{matlab-prettifier}
+
+\geometry{paperwidth=140mm,paperheight=105mm}
+
+\usepackage{scrextend}
+\changefontsizes{11pt}
+
+\setbeamersize{text margin left=5pt,text margin right=5pt}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{style=Matlab-editor}
+
+\lstset{ %
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  otherkeywords={*,...},            % if you want to add more keywords to the set
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman Adobe Garamond Pro
+\font_sans Helvetica Neue
+\font_typewriter DejaVu Sans Mono
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 60
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Konstanter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_constants.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A1: Euler approximation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a1_euler.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2: Euler approximation - anrop
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a1_euler_calling.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A1 i: Euler approximation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\tilde{\alpha}\left(X\right)=\frac{f\left(X\right)}{2}\quad0<x<1\quad\triangle x=\frac{1}{10}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_a1_i.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A1 ii: Euler approximation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\tilde{\alpha}\left(X\right)=\frac{1}{2}\quad0<x<1\quad\triangle x=\frac{1}{10}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_a1_ii.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A1 iii: Euler approximation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\tilde{\alpha}\left(X\right)=0\quad0<x<1\quad\triangle x=\frac{1}{10}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_a1_iii.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A1: Integrering med trapets-regeln
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a1_trapezoid.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2: Trapetsregeln, anrop
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a1_int.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2: Implicit euler - nyttofunktioner
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a2_fixpoint_utils.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 a: Implicit euler - anrop
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a2_fixpoint_calling.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 a: Implicit euler - implementering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a2_fixpoint_main.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 a: Implicit euler - graf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_a2_a.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 b: Newton-Rhapson
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a2_newton.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 b: Euler-Newton - anrop
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a2_euler_newton_calling.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 b: Euler-Newton - implementering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_a2_euler_newton.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2 b: Euler-Newton: graf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_a2_b.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2: Forward euler vs.
+ backwards euler
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+Forward/explicit euler:
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cccc}
+\frac{dX}{dt}= & -\lambda X(t) & \Rightarrow & \frac{X_{n+1}-X_{n}}{\triangle t}=-\lambda X_{n}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cccc}
+X_{n+1}-X_{n}=-\triangle t\lambda X_{n} & \Rightarrow & X_{n+1}=-\triangle t\lambda X_{n}+X_{n}= & \left(1-\triangle t\lambda\right)X_{n}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+X_{n+1}=\left(1-\triangle t\lambda\right)\left(1-\triangle t\lambda\right)X_{n-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+startvärde: 
+\begin_inset Formula $x_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+X_{n+1}=\left(1-\triangle t\lambda\right)^{n+1}x_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+\lim_{\triangle t\to\infty} & \left(1-\triangle t\lambda\right)^{n+1}\left(x_{0}\right)=\infty\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2: Backwards euler
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+Backwards/implicit euler:
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cccccc}
+\frac{dX}{dt}= & -\lambda X(t) & \Rightarrow & \frac{X_{n+1}-X_{n}}{\triangle t}=-\lambda X_{n+1} & \Rightarrow & X_{n+1}=-\triangle t\lambda X_{n+1}+X_{n}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+X_{n}=X_{n+1}\left(1+\triangle t\lambda\right) & \Rightarrow & X_{n+1}=\frac{X_{n}}{1+\triangle t\lambda}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+X_{n+1}=\left(\frac{1}{1+\triangle t\lambda}\right)\left(\frac{1}{1+\triangle t\lambda}\right)X_{n-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+X_{n+1}=\left(\frac{1}{1+\triangle t\lambda}\right)^{n+1}x_{0}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+\lim_{\triangle t\to\infty} & \left(\frac{1}{1+\triangle t\lambda}\right)^{n+1}x_{0}=0\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+A2: Forward euler vs.
+ backwards euler
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+Analytisk
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{ccccc}
+\frac{dX}{dt}= & -\lambda X(t) & \Rightarrow & X\left(t\right)=Ce^{-\lambda t} & \quad,X\left(0\right)=1\quad C=1\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+X\left(t+n\triangle t\right)= & e^{-\lambda\left(t+n\triangle t\right)}\end{array}=e^{-\lambda t}e^{-\lambda n\triangle t}=e^{-\lambda n\triangle t}X\left(n\triangle t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+\lim_{t\to\infty} & Ce^{-\lambda t}=0\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B1: Minimering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+För att minimera varje term i serien letar vi efter kritiska punkter för
+ olika värden av 
+\begin_inset Formula $\tilde{\alpha_{n}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+min\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\triangle X\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+g\left(\tilde{\alpha}_{n}\right)=\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}} & \Rightarrow & \frac{\partial g\left(\tilde{\alpha}\right)}{\partial\tilde{\alpha}_{n}}=0\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B1: Derivering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+Kvotregeln
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\tilde{\alpha}_{n}}\left(\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\right)=\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)+Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)+Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}}=\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}+\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}} & \Longrightarrow & Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B2: Minsta-kvadraten - anrop
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b2_calling.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B2: Minsta-kvadraten - implementering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b2_main.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B2: Interpolering - minstakvadraten vs polynom
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_b2.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3_data.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: funktion 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\frac{1}{\tilde{U}\left(\alpha\right)}=\frac{1}{8}+\frac{a}{\alpha}\Longrightarrow\tilde{U}(\alpha)=\frac{8\alpha}{\alpha+8a}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\frac{\partial\tilde{U}}{\partial a}=8\alpha\frac{-8}{\left(\alpha+8a\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: anrop 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3_calling1.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: Gauss-Newton
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3_main.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: utils
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3_utils.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: graf 1
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename lab1_b3_1.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: anrop 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3_calling2.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: graf 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_b3_2.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: polynom-passning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3_polynomial.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Icke-linjära funktioner: polynom-passning graf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_b3_polynomial.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B3: Maximalt fel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}\Longrightarrow\alpha=cX+dX^{2}+\frac{U}{U^{\text{\prime}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\triangle\alpha=\frac{\partial\alpha}{\partial U}\triangle U+\frac{\partial\alpha}{\partial U^{\prime}}\triangle U^{\prime}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\begin{array}{cc}
+\frac{\partial\alpha}{\partial U}=\frac{1}{U^{\prime}} & \qquad\frac{\partial\alpha}{\partial U^{\prime}}=-\frac{U}{\left(U^{\prime}\right)^{2}}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\triangle U=\triangle U^{\prime}=\frac{1}{10}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Formula 
+\[
+\triangle\alpha=\frac{1}{U^{\prime}}\frac{1}{10}-\frac{U}{\left(U^{\prime}\right)^{2}}\frac{1}{10}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B4: Optimering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+...
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b4.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B4: 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_b4_1.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B4: 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_b4_2.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B4: 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Graphics
+	filename lab1_b4_3.eps
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Separator
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+B5: Felkällor och analys
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+...
+\end_layout
+
+\begin_layout Frame
+Iterations?
+\end_layout
+
+\begin_layout Frame
+Floating point precision?
+\end_layout
+
+\begin_layout Frame
+Truncation?
+\end_layout
+
+\end_body
+\end_document

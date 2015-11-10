@@ -1,0 +1,963 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass scrartcl
+\begin_preamble
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{matlab-prettifier}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{style=Matlab-editor}
+
+\lstset{ %
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=Octave,                 % the language of the code
+  otherkeywords={*,...},            % if you want to add more keywords to the set
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stringstyle=\color{mymauve},     % string literal style
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman Adobe Garamond Pro
+\font_sans Helvetica Neue
+\font_typewriter Inconsolata
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 3cm
+\rightmargin 2cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+SF1545 - Lab 1
+\end_layout
+
+\begin_layout Subtitle
+Applying Numerical Methods to Ramsey's 
+\begin_inset Quotes eld
+\end_inset
+
+A Mathematical Theory Of Saving
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Johan Björklund, u1480nqu, 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+johbjo09@kth.se
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+1.
+ förklaring av frågeställningen
+\end_layout
+
+\begin_layout Standard
+2.
+ beskrivning av teoretisk bakgrund
+\end_layout
+
+\begin_layout Standard
+3.
+ redovising av resultat.
+\end_layout
+
+\begin_layout Standard
+3.
+ val av figurer, härledningar, exempel?
+\end_layout
+
+\begin_layout Standard
+4.
+ redovisning av tankegångar och alternativ?
+\end_layout
+
+\begin_layout Standard
+5.
+ lär sig läsaren något?
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+This lab investigates Ramsey's 
+\begin_inset Quotes eld
+\end_inset
+
+A Mathematical Theory of Saving
+\begin_inset Quotes erd
+\end_inset
+
+ using numerical methods to optimize a function under specific conditions.
+\end_layout
+
+\begin_layout Standard
+Ramsey postulates in his original essay that ...
+ 
+\end_layout
+
+\begin_layout Section
+Minimize a series
+\end_layout
+
+\begin_layout Standard
+Partial derivatives of a series, finding critical points:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+min\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\triangle X\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+g\left(\tilde{\alpha}_{n}\right)=\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}} & \Rightarrow & \frac{\partial g\left(\tilde{\alpha}\right)}{\partial\tilde{\alpha}_{n}}=0\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Quotient rule:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\tilde{\alpha}_{n}}\left(\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\right)=\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)+Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)+Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}}=\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}+\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\frac{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{\left(f\left(X_{n}\right)-\tilde{\alpha}_{n}\right)^{2}} & \Longrightarrow & Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fitting functions with least-squares
+\end_layout
+
+\begin_layout Standard
+Least squares fit, polynomial fit
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b2.eps
+	width 90text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fitting non-linear functions
+\end_layout
+
+\begin_layout Standard
+Fitting non-linear functions to data
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{1}{\tilde{U}\left(\alpha\right)}=\frac{1}{8}+\frac{a}{\alpha}\Longrightarrow\tilde{U}(\alpha)=\frac{8\alpha}{\alpha+8a}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial\tilde{U}}{\partial a}=8\alpha\frac{-8}{\left(\alpha+8a\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Newton-Gauss method
+\end_layout
+
+\begin_layout Subsection*
+Results
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b3_1.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b3_2.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b3_polynomial.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Robustness, sensitivity
+\end_layout
+
+\begin_layout Subsection*
+Maximum error
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}\Longrightarrow\alpha_{n}=cX+dX^{2}+\frac{U}{U^{\text{\prime}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta\alpha=\frac{\partial\alpha}{\partial U}\Delta U+\frac{\partial\alpha}{\partial U^{\prime}}\Delta U^{\prime}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ccccc}
+\frac{\partial\alpha}{\partial U}=\frac{1}{U^{\prime}} & \qquad\frac{\partial\alpha}{\partial U^{\prime}}=-\frac{U}{\left(U^{\prime}\right)^{2}} &  &  & \Delta U=\Delta U^{\prime}=\frac{1}{10}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta\alpha=\frac{1}{10}\frac{1}{U^{\prime}}-\frac{1}{10}\frac{U}{\left(U^{\prime}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta\alpha=\frac{1}{10}\frac{1}{U^{\prime}}-\frac{1}{10}\frac{U}{\left(U^{\prime}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{d\left(\Delta\alpha\right)}{dU}=\frac{1}{10}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Maximum errors
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Constrained optimization with lagrange multipliers
+\end_layout
+
+\begin_layout Standard
+The problem is proposed as finding the optimum level of salaries (consumption)
+ and re-investments (savings) 
+\end_layout
+
+\begin_layout Standard
+Given the maximisation problem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\max_{\alpha\in\mathbb{R^{N}}}\int_{0}^{T}U\left(\alpha(t)\right)dt+g\left(X(T)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+subject to the constraint:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+\frac{d}{dt}X(t) & = & f\left(X(t)\right)-\alpha(t)\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The strategy is to convert this optimization problem into a linear system
+ of equations that can be solved using previous methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\frac{d}{dt}X(t)=f\left(X(t)\right)-\alpha(t)$
+\end_inset
+
+ marginal change of capital can represent savings (or re-investments).
+\end_layout
+
+\begin_layout Standard
+We formulate ...
+ into a lagrange function:
+\end_layout
+
+\begin_layout Paragraph*
+Lagrange function
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{L}\left(X,\alpha,\lambda\right)=\int_{0}^{T}U\left(\alpha\right)dt+g\left(X\right)-\lambda\left(f\left(X(t)\right)-\alpha(t)-X^{\prime}(t)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see the difficulty in proceeding to find the gradient of 
+\begin_inset Formula $\mathcal{L}$
+\end_inset
+
+ and finding roots, and consider the suggestion that a numerical approach
+ might be easier.
+\end_layout
+
+\begin_layout Paragraph*
+Euler approximation
+\end_layout
+
+\begin_layout Standard
+Our solution to the differential in the constraint condition is to use euler
+ approximation, and approximating the integral with piecewise constant functions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mathcal{L}\left(X,\alpha,\lambda\right)=\sum_{n=0}^{N-1}U\left(\alpha_{n}\right)\Delta t+g\left(X_{n}\right)-\sum_{n=0}^{N-1}\lambda_{n+1}\left(X_{n+1}-X_{n}-\Delta t\left(f(X_{n})-\alpha_{n}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The lagrange system becomes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{rll}
+\lambda_{n+1} & = & U^{\prime}\left(\alpha_{n}\right)\\
+\lambda_{n} & = & \lambda_{n+1}+\Delta t\: f^{\prime}\left(X_{n}\right)\:\lambda_{n+1}\\
+X_{n+1} & = & X_{n}+\Delta t\left(f(X_{n})-\alpha_{n}\right)
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since this gives us 
+\begin_inset Formula $U^{\prime}=\lambda_{n+1}$
+\end_inset
+
+, we can solve for 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ as function of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{rcccccccc}
+U\left(\alpha\right) & = & -\frac{3}{2}\alpha^{\frac{-2}{3}}\\
+U^{\prime}(\alpha_{n}) & = & \frac{d}{d\alpha_{n}}\left(-\frac{3}{2}\alpha_{n}^{\frac{-2}{3}}\right) & = & \alpha_{n}^{\frac{-5}{3}} &  &  & = & \lambda_{n+1}\\
+ &  &  &  & \left(\alpha_{n}^{\frac{-5}{3}}\right)^{\frac{-3}{5}} & = & \alpha_{n} & = & \left(\lambda_{n+1}\right)^{\frac{-3}{5}}
+\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Results and analysis
+\end_layout
+
+\begin_layout Standard
+Results are presented in these graphs.
+ 
+\begin_inset Formula $\alpha(t)$
+\end_inset
+
+ is represented by black plots 
+\begin_inset Formula $\lambda(t)$
+\end_inset
+
+ is represented by red plots.
+ Dotted lines are iterations, the solid line is the final result after a
+ tolerance of 
+\begin_inset Formula $10^{-4}$
+\end_inset
+
+ is achieved.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_1.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_2.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_3.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Interpretation of the lagrange multipliers
+\end_layout
+
+\begin_layout Standard
+What is the meaning of the lagrange multipliers in this case? Because they
+ multiply reinvestments/savings, they represent the significance of reinvestment
+s at time 
+\begin_inset Formula $t$
+\end_inset
+
+ with respect to long-term consumption.
+ Further, we see from the lagrangian system: 
+\begin_inset Formula $U^{\prime}=\lambda_{n+1}$
+\end_inset
+
+, which can be interpreted directly as marginal utility of consumption.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\lambda(t)$
+\end_inset
+
+ might be interpreted as the constraint on consumption at time 
+\begin_inset Formula $t$
+\end_inset
+
+ necessary for maximum total consumption, over time.
+ We might also interpret it as the magnitude of 
+\begin_inset Quotes eld
+\end_inset
+
+the force
+\begin_inset Quotes erd
+\end_inset
+
+ that restricts consumption and increases saving: analogous to the function
+ of interest rates.
+\end_layout
+
+\begin_layout Standard
+This is supported by the graphs, which show that the multipliers start high
+ and converge.
+\end_layout
+
+\begin_layout Subsection*
+Attempts with cyclical growth
+\end_layout
+
+\begin_layout Standard
+As an experiment, we test a production function 
+\begin_inset Formula $f(X)$
+\end_inset
+
+ with a periodic term:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ccc}
+f(X)=x^{c+a\sin(\omega x)} & \qquad & \frac{df}{dx}=f(X)\left(a\omega\cos(\pi\omega x)\ln x+\frac{c+a\sin(\omega x)}{x}\right)\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We're looking for patterns and convergence; and keeping in mind that 
+\begin_inset Formula $\lambda(t)$
+\end_inset
+
+ is vaguely analogous to interest rates in economies.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_cyclical1.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We see that solutions stay within bounds around the related linear solution,
+ with no clear convergence within the bounds.
+\end_layout
+
+\begin_layout Standard
+With a small growth constant c and strong imprint from the periodic term
+ via the amplitude, the bounds are wide and we see no convergence within
+ the bounds.
+ No constraint seems to be able to create a convergent solution.
+ Overall, the solutions still converge.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_cyclical2.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Many attempts and variations showed similar patterns.
+ It suggests that under more realistic circumstances the problem is less
+ deterministic.
+ We see that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ seem to converge to more linear shapes; suggesting that over-corrections
+ in savings lead to less optimal solutions.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_cyclical3.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Increasing frequency changes the shape, and sometimes allows for clear convergen
+ce:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_cyclical4.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+An interesting example of convergence and symmetry:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_cyclical5.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Negative growth gives an interesting example; starting with high decreasing
+ consumption and low investment, and eventually inverting.
+ We see many possible solutions with early invertions, but solutions with
+ later invertions are more clustered:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename lab1_b4_cyclical6.eps
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Error sources, conclusions and controversies
+\end_layout
+
+\begin_layout Subsection*
+Assumptions about physical conditions
+\end_layout
+
+\begin_layout Standard
+Production, consumption
+\end_layout
+
+\begin_layout Subsection*
+Algorithms
+\end_layout
+
+\begin_layout Standard
+Algorithms 
+\end_layout
+
+\begin_layout Subsection*
+Error sources
+\end_layout
+
+\begin_layout Standard
+Truncation 
+\end_layout
+
+\begin_layout Standard
+Floating point precision
+\end_layout
+
+\begin_layout Subsection*
+Errors of iteration
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Code listings
+\end_layout
+
+\begin_layout Standard
+All graphs were produced by the code listed below.
+ All code was run with octave.
+\end_layout
+
+\begin_layout Section*
+lab1_b2.m
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b2.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+lab1_b3.m
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b3.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+lab1_b4.m
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinputlisting{lab1_b4.m}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

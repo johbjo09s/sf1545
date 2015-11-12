@@ -235,7 +235,7 @@ function B2 ()
   plot(f_values(:,1), ls_residual, "ox", "markersize", 5)
   title(["ax + bx^2, a=" num2str(ls_coeffs(1)) ", b=" num2str(ls_coeffs(2))  ])
 
-  print -deps lab1_b2.eps
+  print -depsc lab1_b2.eps
   hold off
 endfunction
 
@@ -276,7 +276,7 @@ function B3_1 ()
   title(["8*alfa / (alfa + 8a), a=" num2str(solution(1))])
   hold on
   plot(a_values, u_values, "or", "markersize", 5)
-  print -deps lab1_b3_1.eps
+  print -depsc lab1_b3_1.eps
   hold off
 endfunction
 
@@ -308,7 +308,7 @@ function B3_2 ()
   title(["8 - a*(alfa^b), a=" num2str(solution(1)) ", b=" num2str(solution(2))])
   hold on
   plot(a_values, u_values, "or", "markersize", 5)
-  print -deps lab1_b3_2.eps
+  print -depsc lab1_b3_2.eps
   hold off
 endfunction
 
@@ -323,7 +323,7 @@ function B3_polynomial ()
   plot(x, y)
   hold on
   plot(U_DATA() (:,1), U_DATA() (:,2), "or", "markersize", 5)
-  print -deps lab1_b3_polynomial.eps
+  print -depsc lab1_b3_polynomial.eps
   hold off
 endfunction
 

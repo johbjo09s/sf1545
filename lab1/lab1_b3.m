@@ -2,14 +2,14 @@ function file = lab1_b3
 endfunction
 
 function y = TOL
-  y = 10^(-4)
+  y = 10^(-6)
 endfunction
 
-function solution = computeGaussNewtonFit (_compute_F, _compute_J, ck)
+function [solution, iter] = computeGaussNewtonFit (_compute_F, _compute_J, ck)
   iter = 0
   delta_f = 1
 
-  while (delta_f > TOL) && (iter++ < 50)
+  while (delta_f > TOL) && (iter++ < 100)
     c_prev = ck
     
     f = _compute_F(ck)
@@ -72,8 +72,9 @@ function testGaussNewtonFit1 ()
   _compute_J = @(ck) computeJacobian(F_partials, x_values, ck)
 
   start_c = [3.5, 3.9, 2]
+  iter = 0
 
-  solution = computeGaussNewtonFit(_compute_F, _compute_J, start_c)
+  [solution, iter] = computeGaussNewtonFit(_compute_F, _compute_J, start_c)
   residual = y_values - F([x_values, solution]{:})
 endfunction
 
@@ -100,7 +101,7 @@ function testGaussNewtonFit2 ()
 
   start_c = [5.618, 2.88]
 
-  solution = computeGaussNewtonFit(_compute_F, _compute_J, start_c)
+  [solution, iter] = computeGaussNewtonFit(_compute_F, _compute_J, start_c)
 
   # expect = [5.6310 , 2.8872]
 endfunction
@@ -133,7 +134,7 @@ function testGaussNewtonFit3 ()
 
   start_c = [0.7, 0.7, pi, 1.2]
 
-  solution = computeGaussNewtonFit(_compute_F, _compute_J, start_c)
+  [solution, iter] = computeGaussNewtonFit(_compute_F, _compute_J, start_c)
 
   # expect = [0.7761, 0.5860, 3.9225, 1.1092]
 endfunction
@@ -169,17 +170,21 @@ function B3_1 ()
   _compute_U = @(ck) computeF(U, a_values, ck) - u_values
   _compute_J = @(ck) computeJacobian(U_partials, a_values, ck)
 
-  solution = computeGaussNewtonFit(_compute_U, _compute_J, start_c)
+  [solution, iter] = computeGaussNewtonFit(_compute_U, _compute_J, start_c)
+
+  residual = _compute_U(solution)
+  err = norm(residual)
 
   U_fun = @(alfa) U(alfa, solution(1))
 
   for  i = 1:30
-    u_v = i*200;   x(i) = u_v;   y(i) = U_fun(u_v)
+    u_v=i*200;    x(i) = u_v;   y(i) = U_fun(u_v);
   end
   plot(x, y);
-  title(["8*alfa / (alfa + 8a), a=" num2str(solution(1))])
+  title(["8*alfa / (alfa + 8a), a=" num2str(solution(1)) ", iterations: " num2str(iter) ",2 norm(residual): " num2str(err) ])
   hold on
   plot(a_values, u_values, "or", "markersize", 5)
+  plot(a_values, residual, "ox", "markersize", 5)
   print -depsc lab1_b3_1.eps
   hold off
 endfunction
@@ -201,17 +206,21 @@ function B3_2 ()
 
   start_c = [100, -1/2]   % Gissningar, experimentering. Känslig
 
-  solution = computeGaussNewtonFit(_compute_U, _compute_J, start_c)
+  [solution, iter] = computeGaussNewtonFit(_compute_U, _compute_J, start_c)
+
+  residual = _compute_U(solution)
+  err = norm(residual)
 
   U_fun = @(alfa) U(alfa, solution(1), solution(2))
 
   for  i = 1:30
-    u_v = i*200;   x(i) = u_v;   y(i) = U_fun(u_v)
+    u_v= i*200;    x(i) = u_v;   y(i) = U_fun(u_v);
   end
   plot(x, y)
-  title(["8 - a*(alfa^b), a=" num2str(solution(1)) ", b=" num2str(solution(2))])
+  title(["8 - a*(alfa^b), a=" num2str(solution(1)) ", b=" num2str(solution(2)) ", iterations: " num2str(iter)  ", norm(residual): " num2str(err) ])
   hold on
   plot(a_values, u_values, "or", "markersize", 5)
+  plot(a_values, residual, "ox", "markersize", 5)
   print -depsc lab1_b3_2.eps
   hold off
 endfunction
@@ -221,8 +230,8 @@ B3_2()
 function B3_polynomial ()
   polynomial = computePolyfit(U_DATA)
   
-  for  i = 1:30
-    u_v = i*200;   x(i) = u_v;   y(i) = polyval(polynomial, u_v)
+  for  i = 1:100
+    u_v = i*20;   x(i) = u_v;   y(i) = polyval(polynomial, u_v)
   end
   plot(x, y)
   hold on

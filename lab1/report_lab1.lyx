@@ -193,7 +193,7 @@ Partial derivatives of a series, finding critical points:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-min\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\triangle X\right]
+min\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\Delta X\right]
 \]
 
 \end_inset
@@ -264,7 +264,40 @@ Fitting functions with least-squares
 \end_layout
 
 \begin_layout Standard
-Least squares fit, polynomial fit
+The given problem is to fit a second degree polynomial to certain data points
+ using the method of least squares.
+ The method finds the linear coefficients in a system of equations by factoring
+ the coefficients of an equation into a vector, and arranging into a matrix
+ equation.
+ Evaluating 
+\end_layout
+
+\begin_layout Subsection*
+Notes on the code
+\end_layout
+
+\begin_layout Standard
+In the function 
+\family typewriter
+computeLeastSquaresFit
+\family default
+ we make us of variable argument lists (
+\family typewriter
+varargin
+\family default
+ in matlab), which allows us to call the function with linear combinations
+ of any functions.
+ It returns two arrays; first the coefficients corresponding to the ordered
+ input functions, and the residual.
+ This is necessary for the function to be 
+\emph on
+testable
+\emph default
+ which is fundamental.
+\end_layout
+
+\begin_layout Subsection*
+Results
 \end_layout
 
 \begin_layout Standard
@@ -278,12 +311,91 @@ Least squares fit, polynomial fit
 
 \end_layout
 
+\begin_layout Standard
+Firstly, we see that polynomials are unsuitable to model this data.
+ We see from the residual plot that the two last points are the most important.
+ The small value of b makes the function almost linear, and the least squared
+ distance from these points is 
+\begin_inset Quotes eld
+\end_inset
+
+between them
+\begin_inset Quotes erd
+\end_inset
+
+, rather than crossing them.
+ Sine the polynomial is always continous and 
+\begin_inset Quotes eld
+\end_inset
+
+smooth
+\begin_inset Quotes erd
+\end_inset
+
+, two successive data-points whose vector/line is almost orthogonal to the
+ other data points will force the polynomial into 
+\begin_inset Quotes eld
+\end_inset
+
+wide swings
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Runges phenomenon is related, but also points out the wide swings outside
+ of the data boundaries.
+ Without the two last data points, the polynomial could have been a good
+ fit, within the boundaries of the data.
+\end_layout
+
 \begin_layout Section
 Fitting non-linear functions
 \end_layout
 
 \begin_layout Standard
-Fitting non-linear functions to data
+Since the non-linear functions are not linear combinations, we can not directly
+ use linear systems to solve for the constants.
+ One way to transform exponential functions to linear systems is to use
+ logarithms.
+ As a solution, this places narrow restrictions on the functions and the
+ code is not reusable.
+\end_layout
+
+\begin_layout Subsection*
+Newton-Gauss method
+\end_layout
+
+\begin_layout Standard
+Our solution is to use Newton-Gauss, which achieves linearisation through
+ a jacobian matrix.
+ The advantage over logarithms is that our code can be used for any function
+ for which we can find a jacobian.
+ If we can not find a jacobian analytically, we could use approximations.
+ This allows us to test several candidate functions with minimal manual
+ calculation.
+\end_layout
+
+\begin_layout Standard
+The Newton-Gauss method, in two dimensions 
+\begin_inset Formula $f(x,y,a,b)$
+\end_inset
+
+ is geometrically equivalent to finding the tangent plane of 
+\begin_inset Formula $f(a,b)$
+\end_inset
+
+ using fixpoint approximation ?? In the code, we exploit this linearisation
+ to solve the system for 
+\begin_inset Formula $a,b$
+\end_inset
+
+ using matlab's 
+\backslash
+-operator.
+\end_layout
+
+\begin_layout Standard
+Rearrange:
 \end_layout
 
 \begin_layout Standard
@@ -298,6 +410,10 @@ Fitting non-linear functions to data
 \end_layout
 
 \begin_layout Standard
+Find partial derivatives:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \frac{\partial\tilde{U}}{\partial a}=8\alpha\frac{-8}{\left(\alpha+8a\right)^{2}}
@@ -308,12 +424,18 @@ Fitting non-linear functions to data
 
 \end_layout
 
-\begin_layout Standard
-Newton-Gauss method
-\end_layout
-
 \begin_layout Subsection*
 Results
+\end_layout
+
+\begin_layout Standard
+Tolerance is set to 
+\begin_inset Formula $10^{-6}$
+\end_inset
+
+.
+ Starting values are found by experimentation.
+ Blue crosses are residuals.
 \end_layout
 
 \begin_layout Standard
@@ -342,7 +464,7 @@ Results
 \align center
 \begin_inset Graphics
 	filename lab1_b3_polynomial.eps
-	width 75text%
+	width 65text%
 
 \end_inset
 
@@ -350,7 +472,62 @@ Results
 \end_layout
 
 \begin_layout Subsection*
-Robustness, sensitivity
+Analysis
+\end_layout
+
+\begin_layout Standard
+The exponential function 
+\begin_inset Formula $U(\tilde{\alpha})=8-a\tilde{\alpha}^{b}$
+\end_inset
+
+ is sensitive to variations in the constant 
+\begin_inset Formula $b$
+\end_inset
+
+ and very sensitive to starting values, sometimes diverging with positive
+ values for 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ In this example the residual is smaller, but seems to grow.
+ If accuracy close to zero is important, the exponential function is favourable.
+\end_layout
+
+\begin_layout Standard
+For the polynomial, the residual is exactly zero (from the definition of
+ polynomial fitting) but it is a bad choice, crossing into negative asymptically
+ diverging to infinity.
+\end_layout
+
+\begin_layout Standard
+The quotient function 
+\begin_inset Formula $\frac{8\alpha}{\alpha+8a}$
+\end_inset
+
+ converges faster than the exponential, is less sensitive to small varitions,
+ and is less sensitive to starting values, and might be faster to compute.
+ All of these factors might have more relevance in real-world applications
+ (for example realtime systems with realtime data, possibly with limited
+ computational resources) than in lab-environments using scientific software.
+ We see from the plot that the residual is largest close to zero, which
+ might be acceptable under circumstances.
+ We could attempt to improve the fit, for example by modeling the residual
+ and adding terms that cancel the residual.
+\end_layout
+
+\begin_layout Standard
+The choice of modeling function depends on application, and without knowing
+ test cases it is meaningless to decide.
+\end_layout
+
+\begin_layout Standard
+In Ramsey's model, accuracy as 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ grows is more important, so the quotient is probably favourable over the
+ exponential.
 \end_layout
 
 \begin_layout Subsection*
@@ -440,12 +617,9 @@ Constrained optimization with lagrange multipliers
 \end_layout
 
 \begin_layout Standard
-The problem is proposed as finding the optimum level of salaries (consumption)
- and re-investments (savings) 
-\end_layout
-
-\begin_layout Standard
-Given the maximisation problem:
+The given problem is to find the optimum level of salaries (consumption)
+ and re-investments (savings) in a company.
+ This is modeled as the maximisation problem:
 \end_layout
 
 \begin_layout Standard
@@ -476,24 +650,17 @@ subject to the constraint:
 \end_layout
 
 \begin_layout Standard
+Where X(t) is our 
+\end_layout
+
+\begin_layout Standard
 The strategy is to convert this optimization problem into a linear system
  of equations that can be solved using previous methods.
+ 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\frac{d}{dt}X(t)=f\left(X(t)\right)-\alpha(t)$
-\end_inset
-
- marginal change of capital can represent savings (or re-investments).
-\end_layout
-
-\begin_layout Standard
-We formulate ...
- into a lagrange function:
-\end_layout
-
-\begin_layout Paragraph*
-Lagrange function
+We formulate the problem into a lagrange function:
 \end_layout
 
 \begin_layout Standard
@@ -508,7 +675,9 @@ Lagrange function
 \end_layout
 
 \begin_layout Standard
-We see the difficulty in proceeding to find the gradient of 
+The principle of linearisation allows us to use linear systems to solve
+ this problem.
+ However, we see the difficulty in proceeding to find the gradient of 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
 
@@ -584,6 +753,15 @@ U^{\prime}(\alpha_{n}) & = & \frac{d}{d\alpha_{n}}\left(-\frac{3}{2}\alpha_{n}^{
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The numerical system is larger, with one equation for each time step, and
+ we find 
+\begin_inset Formula $X(t),\:\lambda(t),\:\alpha(t)$
+\end_inset
+
+ as arrays of numbers through iterations.
 \end_layout
 
 \begin_layout Subsection*
@@ -759,11 +937,11 @@ Many attempts and variations showed similar patterns.
  It suggests that under more realistic circumstances the problem is less
  deterministic.
  We see that 
-\begin_inset Formula $\lambda$
+\begin_inset Formula $\lambda(t)$
 \end_inset
 
- seem to converge to more linear shapes; suggesting that over-corrections
- in savings lead to less optimal solutions.
+ seems to converge to more linear shapes; suggesting that over-corrections
+ lead to less optimal solutions.
 \end_layout
 
 \begin_layout Standard
@@ -794,7 +972,7 @@ ce:
 \end_layout
 
 \begin_layout Standard
-An interesting example of convergence and symmetry:
+An interesting example of symmetry:
 \end_layout
 
 \begin_layout Standard
@@ -846,19 +1024,11 @@ Production, consumption
 \end_layout
 
 \begin_layout Subsection*
-Algorithms
-\end_layout
-
-\begin_layout Standard
-Algorithms 
-\end_layout
-
-\begin_layout Subsection*
 Error sources
 \end_layout
 
 \begin_layout Standard
-Truncation 
+Truncation
 \end_layout
 
 \begin_layout Standard
@@ -866,7 +1036,27 @@ Floating point precision
 \end_layout
 
 \begin_layout Subsection*
-Errors of iteration
+Errors from algorithms
+\end_layout
+
+\begin_layout Standard
+Algorithms such as euler approximation cause errors relative to the analytical
+ solutions.
+ These errors can be minimized by reducing stepsizes, however ...
+\end_layout
+
+\begin_layout Standard
+Algorithms that are converging/self-correcting (such as implicit euler)
+ will be less sensitive to error sources since the condition ...
+\end_layout
+
+\begin_layout Subsection*
+Errors compound in iterations
+\end_layout
+
+\begin_layout Standard
+Reducing stepsizes increases number of iterations, which causes errors from
+ truncation to compound.
 \end_layout
 
 \begin_layout Quotation

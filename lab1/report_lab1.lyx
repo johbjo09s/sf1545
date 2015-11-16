@@ -131,78 +131,14 @@ johbjo09@kth.se
 
 \end_layout
 
-\begin_layout Standard
-1.
- förklaring av frågeställningen
-\end_layout
-
-\begin_layout Standard
-2.
- beskrivning av teoretisk bakgrund
-\end_layout
-
-\begin_layout Standard
-3.
- redovising av resultat.
-\end_layout
-
-\begin_layout Standard
-3.
- val av figurer, härledningar, exempel?
-\end_layout
-
-\begin_layout Standard
-4.
- redovisning av tankegångar och alternativ?
-\end_layout
-
-\begin_layout Standard
-5.
- lär sig läsaren något?
-\end_layout
-
-\begin_layout Section*
-Introduction
-\end_layout
-
-\begin_layout Standard
-This lab investigates Ramsey's 
-\begin_inset Quotes eld
-\end_inset
-
-A Mathematical Theory of Saving
-\begin_inset Quotes erd
-\end_inset
-
- using numerical methods to optimize a function under specific conditions.
-\end_layout
-
-\begin_layout Standard
-Ramsey postulates in his original essay that ...
- 
-\end_layout
-
 \begin_layout Section
 Minimize a series
 \end_layout
 
 \begin_layout Standard
-Partial derivatives of a series, finding critical points:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \[
-min\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\Delta X\right]
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\begin{array}{ccc}
-g\left(\tilde{\alpha}_{n}\right)=\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}} & \Rightarrow & \frac{\partial g\left(\tilde{\alpha}\right)}{\partial\tilde{\alpha}_{n}}=0\end{array}
+\min_{\alpha_{n}\in\mathbb{R}}\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\Delta X\right]
 \]
 
 \end_inset
@@ -211,7 +147,70 @@ g\left(\tilde{\alpha}_{n}\right)=\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left
 \end_layout
 
 \begin_layout Standard
-Quotient rule:
+To minimize the series, we need to take the partial derivate, and find critical
+ points:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\tilde{\alpha}_{n}}\left(\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\Delta X\right]\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Expanding, we see:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\tilde{\alpha}_{1}}\left(\frac{Ũ\left(\tilde{\alpha}_{1}\right)}{f\left(X_{1}\right)-\tilde{\alpha}_{1}}+\frac{Ũ\left(\tilde{\alpha}_{2}\right)}{f\left(X_{2}\right)-\tilde{\alpha}_{2}}+\frac{Ũ\left(\tilde{\alpha}_{3}\right)}{f\left(X_{3}\right)-\tilde{\alpha}_{3}}+...+\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the series expand, only one term in the series is dependent on the correspond
+ing index of alpha:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\tilde{\alpha}_{i}}\left(\frac{Ũ\left(\tilde{\alpha}_{j}\right)}{f\left(X_{j}\right)-\tilde{\alpha}_{j}}\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The derivative of all other terms is zero.
+ Therefore, we may say:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\tilde{\alpha}_{n}}\left(\sum_{n=0}^{\infty}\left[\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\Delta X\right]\right)=\sum_{n=0}^{\infty}\left[\frac{\partial}{\partial\tilde{\alpha}_{n}}\left(\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\right)\Delta X\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To find the inner derivative, we apply the quotient rule:
 \end_layout
 
 \begin_layout Standard
@@ -269,7 +268,40 @@ The given problem is to fit a second degree polynomial to certain data points
  The method finds the linear coefficients in a system of equations by factoring
  the coefficients of an equation into a vector, and arranging into a matrix
  equation.
- Evaluating 
+ The system is so-called over-determined, as the number of equations exceed
+ the number of coeffecients.
+ Solving this system using matlab's 
+\backslash
+-operator is equivalent of minimizing the square norm of the residual 
+\begin_inset Formula $\begin{Vmatrix}Ac-x\end{Vmatrix}$
+\end_inset
+
+ (hence 
+\begin_inset Quotes eld
+\end_inset
+
+least squares
+\begin_inset Quotes erd
+\end_inset
+
+), by setting the derivative with respect to the coefficients to zero, and
+ then solving for 
+\begin_inset Formula $c$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{ccccc}
+\frac{d}{dc}\begin{Vmatrix}Ac-x\end{Vmatrix}=2A^{T}\left(Ac-x\right)=0 & \Rightarrow & A^{T}\left(Ac-x\right)=0 & \Rightarrow & A^{T}Ac=A^{T}x\end{array}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -304,7 +336,7 @@ Results
 \align center
 \begin_inset Graphics
 	filename lab1_b2.eps
-	width 90text%
+	width 75text%
 
 \end_inset
 
@@ -362,11 +394,11 @@ Since the non-linear functions are not linear combinations, we can not directly
 \end_layout
 
 \begin_layout Subsection*
-Newton-Gauss method
+Gauss-Newton method
 \end_layout
 
 \begin_layout Standard
-Our solution is to use Newton-Gauss, which achieves linearisation through
+Our solution is to use Gauss-Newton, which achieves linearisation through
  a jacobian matrix.
  The advantage over logarithms is that our code can be used for any function
  for which we can find a jacobian.
@@ -376,22 +408,28 @@ Our solution is to use Newton-Gauss, which achieves linearisation through
 \end_layout
 
 \begin_layout Standard
-The Newton-Gauss method, in two dimensions 
-\begin_inset Formula $f(x,y,a,b)$
-\end_inset
-
- is geometrically equivalent to finding the tangent plane of 
-\begin_inset Formula $f(a,b)$
-\end_inset
-
- using fixpoint approximation ?? In the code, we exploit this linearisation
- to solve the system for 
+The Newton-Gauss method, we exploit this linearisation to solve the system
+ for 
 \begin_inset Formula $a,b$
 \end_inset
 
  using matlab's 
 \backslash
 -operator.
+\end_layout
+
+\begin_layout Subsection*
+Notes on the code
+\end_layout
+
+\begin_layout Standard
+We make use of matlab's cell array as a container to place functions, the
+ partial derivatives, so we can factor the computation of jacobians.
+ Watch for 
+\family typewriter
+{}-brackets
+\family default
+ in the code.
 \end_layout
 
 \begin_layout Standard
@@ -535,7 +573,7 @@ Maximum relative error
 \end_layout
 
 \begin_layout Standard
-Find maximum relative error in 
+Find the maximum relative error in 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -558,6 +596,10 @@ f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}
 \end_layout
 
 \begin_layout Standard
+Linearisation:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \Delta\alpha=\frac{\partial\alpha}{\partial U}\Delta U+\frac{\partial\alpha}{\partial U^{\prime}}\Delta U^{\prime}
@@ -572,7 +614,7 @@ f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}
 \begin_inset Formula 
 \[
 \begin{array}{ccccc}
-\frac{\partial\alpha}{\partial U}=\frac{1}{U^{\prime}} & \qquad\frac{\partial\alpha}{\partial U^{\prime}}=-\frac{U}{\left(U^{\prime}\right)^{2}} &  &  & |\frac{\Delta U}{U}|=|\frac{\Delta U^{\prime}}{U^{\prime}}|=\frac{1}{10}\end{array}
+\frac{\partial\alpha}{\partial U}=\frac{1}{U^{\prime}} & \qquad\frac{\partial\alpha}{\partial U^{\prime}}=-\frac{U}{\left(U^{\prime}\right)^{2}} &  &  & \frac{\Delta U}{U}=\frac{\Delta U^{\prime}}{U^{\prime}}=\pm\frac{1}{10}\end{array}
 \]
 
 \end_inset
@@ -604,10 +646,31 @@ The maximum error occurs when
 \begin_inset Formula 
 \[
 \begin{array}{lcl}
-\frac{\Delta\alpha}{\alpha}=\frac{1}{f\left(X\right)+\frac{U}{U^{\text{\prime}}}}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right) & \quad & \frac{\Delta\alpha}{\alpha}=\frac{1}{\frac{U}{U^{\text{\prime}}}}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right)\\
-\frac{\Delta\alpha}{\alpha}=\frac{U^{\prime}}{U}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right) &  & \frac{\Delta\alpha}{\alpha}=\frac{\Delta U}{U}-\frac{1}{U^{\prime}}\Delta U^{\prime}\\
-\frac{\Delta\alpha}{\alpha}=\frac{\Delta U}{U}-\frac{\Delta U^{\prime}}{U^{\prime}} &  & \frac{\Delta\alpha}{\alpha}=\pm\frac{1}{10}\pm\frac{1}{10}
-\end{array}
+\frac{\Delta\alpha}{\alpha}=\frac{1}{f\left(X\right)+\frac{U}{U^{\text{\prime}}}}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right) & \Rightarrow & \frac{\Delta\alpha}{\alpha}=\frac{1}{\frac{U}{U^{\text{\prime}}}}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right)\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lcl}
+\frac{\Delta\alpha}{\alpha}=\frac{U^{\prime}}{U}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right) & \Rightarrow & \frac{\Delta\alpha}{\alpha}=\frac{\Delta U}{U}-\frac{1}{U^{\prime}}\Delta U^{\prime}\end{array}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{array}{lcl}
+\frac{\Delta\alpha}{\alpha}=\frac{\Delta U}{U}-\frac{\Delta U^{\prime}}{U^{\prime}} & \Rightarrow & \frac{\Delta\alpha}{\alpha}=\pm\frac{1}{10}\mp\frac{1}{10}=\pm\frac{1}{5}\end{array}
 \]
 
 \end_inset
@@ -661,12 +724,16 @@ subject to the constraint:
 \end_layout
 
 \begin_layout Standard
-Where X(t) is our 
+Where 
+\begin_inset Formula $X(t)$
+\end_inset
+
+ is our production funtion.
 \end_layout
 
 \begin_layout Standard
 The strategy is to convert this optimization problem into a linear system
- of equations that can be solved using previous methods.
+ of equations that can be solved using familiar methods.
  
 \end_layout
 
@@ -677,7 +744,7 @@ We formulate the problem into a lagrange function:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\mathcal{L}\left(X,\alpha,\lambda\right)=\int_{0}^{T}U\left(\alpha\right)dt+g\left(X\right)-\lambda\left(f\left(X(t)\right)-\alpha(t)-X^{\prime}(t)\right)
+\mathcal{L}\left(X,\alpha,\lambda\right)=\int_{0}^{T}U\left(\alpha\right)dt+g\left(X\right)-\lambda\left(f\left(X(t)\right)-\alpha(t)-\frac{dX}{dt}(t)\right)
 \]
 
 \end_inset
@@ -687,7 +754,7 @@ We formulate the problem into a lagrange function:
 
 \begin_layout Standard
 The principle of linearisation allows us to use linear systems to solve
- this problem.
+ this problem (normal lagrange multiplier method).
  However, we see the difficulty in proceeding to find the gradient of 
 \begin_inset Formula $\mathcal{L}$
 \end_inset
@@ -703,6 +770,16 @@ Euler approximation
 \begin_layout Standard
 Our solution to the differential in the constraint condition is to use euler
  approximation, and approximating the integral with piecewise constant functions.
+ Occurences of 
+\begin_inset Formula $dt$
+\end_inset
+
+ transforms to 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+, the integral transforms into a sum, and the differential becomes the sum
+ 
 \end_layout
 
 \begin_layout Standard
@@ -717,7 +794,11 @@ Our solution to the differential in the constraint condition is to use euler
 \end_layout
 
 \begin_layout Standard
-The lagrange system becomes:
+Setting the gradient to zero 
+\begin_inset Formula $\nabla\mathcal{L}=<0,0,0>$
+\end_inset
+
+ and rearranging, the lagrange system becomes:
 \end_layout
 
 \begin_layout Standard
@@ -767,8 +848,8 @@ U^{\prime}(\alpha_{n}) & = & \frac{d}{d\alpha_{n}}\left(-\frac{3}{2}\alpha_{n}^{
 \end_layout
 
 \begin_layout Standard
-The numerical system is larger, with one equation for each time step, and
- we find 
+The numerical system is larger, with one equation for each time step.
+ We find 
 \begin_inset Formula $X(t),\:\lambda(t),\:\alpha(t)$
 \end_inset
 
@@ -789,7 +870,7 @@ Results are presented in these graphs.
 \begin_inset Formula $\lambda(t)$
 \end_inset
 
- is represented by red plots.
+ is represented by magenta plots.
  Dotted lines are iterations, the solid line is the final result after a
  tolerance of 
 \begin_inset Formula $10^{-4}$
@@ -799,21 +880,18 @@ Results are presented in these graphs.
 \end_layout
 
 \begin_layout Standard
-\align center
+\noindent
+\align left
 \begin_inset Graphics
 	filename lab1_b4_1.eps
-	width 75text%
+	width 55text%
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\align center
 \begin_inset Graphics
 	filename lab1_b4_2.eps
-	width 75text%
+	width 55text%
 
 \end_inset
 
@@ -821,10 +899,11 @@ Results are presented in these graphs.
 \end_layout
 
 \begin_layout Standard
+\noindent
 \align center
 \begin_inset Graphics
 	filename lab1_b4_3.eps
-	width 75text%
+	width 55text%
 
 \end_inset
 
@@ -892,7 +971,7 @@ As an experiment, we test a production function
 \begin_inset Formula 
 \[
 \begin{array}{ccc}
-f(X)=x^{c+a\sin(\omega x)} & \qquad & \frac{df}{dx}=f(X)\left(a\omega\cos(\pi\omega x)\ln x+\frac{c+a\sin(\omega x)}{x}\right)\end{array}
+f(X)=x^{c+a\sin(\pi\omega x)} & \qquad & \frac{df}{dx}=f(X)\left(a\pi\omega\cos(\pi\omega x)\ln x+\frac{c+a\sin(\pi\omega x)}{x}\right)\end{array}
 \]
 
 \end_inset
@@ -925,7 +1004,11 @@ We see that solutions stay within bounds around the related linear solution,
 \end_layout
 
 \begin_layout Standard
-With a small growth constant c and strong imprint from the periodic term
+
+\emph on
+cyclical2:
+\emph default
+ With a small growth constant c and strong imprint from the periodic term
  via the amplitude, the bounds are wide and we see no convergence within
  the bounds.
  No constraint seems to be able to create a convergent solution.
@@ -933,10 +1016,18 @@ With a small growth constant c and strong imprint from the periodic term
 \end_layout
 
 \begin_layout Standard
-\align center
+\noindent
+\align left
 \begin_inset Graphics
 	filename lab1_b4_cyclical2.eps
-	width 75text%
+	width 50text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename lab1_b4_cyclical3.eps
+	width 50text%
 
 \end_inset
 
@@ -956,41 +1047,27 @@ Many attempts and variations showed similar patterns.
 \end_layout
 
 \begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename lab1_b4_cyclical3.eps
-	width 75text%
 
-\end_inset
-
-
+\emph on
+cyclical4:
+\emph default
+ Increasing frequency changes the shape, and sometimes allows for clear
+ convergence:
 \end_layout
 
 \begin_layout Standard
-Increasing frequency changes the shape, and sometimes allows for clear convergen
-ce:
-\end_layout
-
-\begin_layout Standard
-\align center
+\noindent
+\align left
 \begin_inset Graphics
 	filename lab1_b4_cyclical4.eps
-	width 75text%
+	width 50text%
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-An interesting example of symmetry:
-\end_layout
-
-\begin_layout Standard
-\align center
 \begin_inset Graphics
-	filename lab1_b4_cyclical5.eps
-	width 75text%
+	filename lab1_b4_cyclical6.eps
+	width 50text%
 
 \end_inset
 
@@ -998,69 +1075,208 @@ An interesting example of symmetry:
 \end_layout
 
 \begin_layout Standard
-Negative growth gives an interesting example; starting with high decreasing
+
+\emph on
+cyclical6:
+\emph default
+ Negative growth gives an interesting example; starting with high decreasing
  consumption and low investment, and eventually inverting.
  We see many possible solutions with early invertions, but solutions with
  later invertions are more clustered:
 \end_layout
 
+\begin_layout Section
+Error sources
+\end_layout
+
+\begin_layout Subsubsection*
+Assumptions about physical conditions
+\end_layout
+
 \begin_layout Standard
-\align center
+To what degree does Ramsey's mathematical model correspond to physical reality?
+ Ramsey makes assumptions about production as function of capital (disregarding
+ the role of human creative input), and enjoyment/utility as a function
+ of production (disregarding misallocations), and labour as 
+\begin_inset Quotes eld
+\end_inset
+
+disutility
+\begin_inset Quotes erd
+\end_inset
+
+ (disregarding work a meaningful).
+ Applying a model like Ramsey's requires careful understanding of the assumption
+s.
+\end_layout
+
+\begin_layout Standard
+In other applications, it might be less obvious how the mathematical model
+ misrepresents physical reality, even if calculated without errors.
+ A book (Peter Pohl) gives the example 
+\begin_inset Quotes eld
+\end_inset
+
+a point-mass, pendulating with infinitely small movements on a massless
+ string
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Input data
+\end_layout
+
+\begin_layout Standard
+In our example, input data was picked from Ramsey's original paper, and
+ likely has little connection to present economic conditions.
+\end_layout
+
+\begin_layout Paragraph*
+Truncation
+\end_layout
+
+\begin_layout Standard
+Truncation is the error resulting from the interrupted limit.
+ For example; in euler and trapezoid methods, since 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ is fixed an does not approach zero (as in the analytical solutions) each
+ iteration will accumulate an error.
+ This will happen regardless of convergence characteristics of the algorithm
+ (both forward and implicit euler).
+\end_layout
+
+\begin_layout Paragraph*
+Euler and trapezoid
+\end_layout
+
+\begin_layout Standard
+Algorithms such as euler approximation cause mathematical errors relative
+ to analytical solutions.
+ Forward euler, for example, will diverge.
+ While this would not happen if somehow implemented numerically with true
+ infinitesimals and limits, the truncation error is particularily worse
+ in certain algorithms.
+ The integration approximation in problem 4, has error 
+\begin_inset Formula $O\left(\frac{1}{n}\right)$
+\end_inset
+
+.
+ Trapezoid has an error on the order of 
+\begin_inset Formula $O\left(\frac{1}{n^{2}}\right)$
+\end_inset
+
+.
+ These can be derived through taylor approximation.
+\end_layout
+
+\begin_layout Standard
+Truncation errors can be minimized by reducing stepsizes; however, precision
+ errors grow with smaller stepsizes; and as number of iterations grow, all
+ errors can compound.
+\end_layout
+
+\begin_layout Paragraph*
+Precision
+\end_layout
+
+\begin_layout Standard
+Cancellation errors occur as one number is subtracted from another close
+ number.
+ The difference that is smaller than precision is the error.
+ Since the resulting number is small, the relative error might be large.
+\end_layout
+
+\begin_layout Paragraph*
+Comparison
+\end_layout
+
+\begin_layout Standard
+The biggest source of error in our lagrange system is likely truncation
+ from large stepsizes.
+ Meanwhile, precision and accuracy is probably adequate will compared to
+ reliability of the input data.
+\end_layout
+
+\begin_layout Paragraph*
+Experimental error analysis and condition numbers
+\end_layout
+
+\begin_layout Standard
+We test the optimization method from section 4, by adding errors 
+\begin_inset Formula $erra$
+\end_inset
+
+ and 
+\begin_inset Formula $errb$
+\end_inset
+
+ to the coefficients of the production function 
+\begin_inset Formula $aX+bX^{2}$
+\end_inset
+
+.
+ The red/dashed line is the 
+\begin_inset Formula $\alpha$
+\end_inset
+
+-plot corresponding to the error.
+ We get a visual impression of the 
+\begin_inset Quotes eld
+\end_inset
+
+condition
+\begin_inset Quotes erd
+\end_inset
+
+ of the optimization algorithm.
+ We see condition numbers 
+\begin_inset Formula $\left(\frac{err_{out}}{err_{in}}\right)$
+\end_inset
+
+, at worst, close to one.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
 \begin_inset Graphics
-	filename lab1_b4_cyclical6.eps
-	width 75text%
+	filename lab1_b4_err1.eps
+	width 50text%
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename lab1_b4_err2.eps
+	width 50text%
 
 \end_inset
 
 
 \end_layout
 
-\begin_layout Section
-Error sources, conclusions and controversies
-\end_layout
-
-\begin_layout Subsection*
-Assumptions about physical conditions
-\end_layout
-
 \begin_layout Standard
-Production, consumption
-\end_layout
+\noindent
+\align left
+\begin_inset Graphics
+	filename lab1_b4_err3.eps
+	width 50text%
 
-\begin_layout Subsection*
-Error sources
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Truncation
-\end_layout
 
-\begin_layout Standard
-Floating point precision
-\end_layout
+\begin_inset Graphics
+	filename lab1_b4_err4.eps
+	width 50text%
 
-\begin_layout Subsection*
-Errors from algorithms
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Algorithms such as euler approximation cause errors relative to the analytical
- solutions.
- These errors can be minimized by reducing stepsizes, however ...
-\end_layout
 
-\begin_layout Standard
-Algorithms that are converging/self-correcting (such as implicit euler)
- will be less sensitive to error sources since the condition ...
-\end_layout
-
-\begin_layout Subsection*
-Errors compound in iterations
-\end_layout
-
-\begin_layout Standard
-Reducing stepsizes increases number of iterations, which causes errors from
- truncation to compound.
 \end_layout
 
 \begin_layout Quotation

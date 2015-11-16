@@ -531,13 +531,25 @@ In Ramsey's model, accuracy as
 \end_layout
 
 \begin_layout Subsection*
-Maximum error
+Maximum relative error
+\end_layout
+
+\begin_layout Standard
+Find maximum relative error in 
+\begin_inset Formula $\alpha$
+\end_inset
+
+: 
+\begin_inset Formula $\frac{\Delta\alpha}{\alpha}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}\Longrightarrow\alpha_{n}=cX+dX^{2}+\frac{U}{U^{\text{\prime}}}
+f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}{Ũ^{\prime}\left(\tilde{\alpha}_{n}\right)}\Longrightarrow\alpha_{n}=f\left(X\right)+\frac{U}{U^{\text{\prime}}}
 \]
 
 \end_inset
@@ -560,7 +572,7 @@ f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}
 \begin_inset Formula 
 \[
 \begin{array}{ccccc}
-\frac{\partial\alpha}{\partial U}=\frac{1}{U^{\prime}} & \qquad\frac{\partial\alpha}{\partial U^{\prime}}=-\frac{U}{\left(U^{\prime}\right)^{2}} &  &  & \Delta U=\Delta U^{\prime}=\frac{1}{10}\end{array}
+\frac{\partial\alpha}{\partial U}=\frac{1}{U^{\prime}} & \qquad\frac{\partial\alpha}{\partial U^{\prime}}=-\frac{U}{\left(U^{\prime}\right)^{2}} &  &  & |\frac{\Delta U}{U}|=|\frac{\Delta U^{\prime}}{U^{\prime}}|=\frac{1}{10}\end{array}
 \]
 
 \end_inset
@@ -571,18 +583,31 @@ f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Delta\alpha=\frac{1}{10}\frac{1}{U^{\prime}}-\frac{1}{10}\frac{U}{\left(U^{\prime}\right)^{2}}
+\begin{array}{crcclc}
+\Delta\alpha=\frac{1}{U^{\prime}}\Delta U-\frac{U}{\left(U^{\prime}\right)^{2}}\Delta U^{\prime} & \quad & \Delta\alpha & = & \frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right)\end{array}
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+The maximum error occurs when 
+\begin_inset Formula $f\left(X\right)=0$
+\end_inset
+
+ in the denominator:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\Delta\alpha=\frac{1}{10}\frac{1}{U^{\prime}}-\frac{1}{10}\frac{U}{\left(U^{\prime}\right)^{2}}
+\begin{array}{lcl}
+\frac{\Delta\alpha}{\alpha}=\frac{1}{f\left(X\right)+\frac{U}{U^{\text{\prime}}}}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right) & \quad & \frac{\Delta\alpha}{\alpha}=\frac{1}{\frac{U}{U^{\text{\prime}}}}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right)\\
+\frac{\Delta\alpha}{\alpha}=\frac{U^{\prime}}{U}\frac{1}{U^{\prime}}\left(\Delta U-\frac{U}{U^{\prime}}\Delta U^{\prime}\right) &  & \frac{\Delta\alpha}{\alpha}=\frac{\Delta U}{U}-\frac{1}{U^{\prime}}\Delta U^{\prime}\\
+\frac{\Delta\alpha}{\alpha}=\frac{\Delta U}{U}-\frac{\Delta U^{\prime}}{U^{\prime}} &  & \frac{\Delta\alpha}{\alpha}=\pm\frac{1}{10}\pm\frac{1}{10}
+\end{array}
 \]
 
 \end_inset
@@ -591,25 +616,11 @@ f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula 
-\[
-\frac{d\left(\Delta\alpha\right)}{dU}=\frac{1}{10}=0
-\]
-
+Maximum absolute relative error is 
+\begin_inset Formula $\frac{2}{10}=\frac{1}{5}$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Maximum errors
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
+.
 \end_layout
 
 \begin_layout Section
@@ -999,13 +1010,6 @@ Negative growth gives an interesting example; starting with high decreasing
 	filename lab1_b4_cyclical6.eps
 	width 75text%
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
 \end_inset
 
 

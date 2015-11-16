@@ -169,7 +169,7 @@ Expanding, we see:
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\frac{\partial}{\partial\tilde{\alpha}_{1}}\left(\frac{Ũ\left(\tilde{\alpha}_{1}\right)}{f\left(X_{1}\right)-\tilde{\alpha}_{1}}+\frac{Ũ\left(\tilde{\alpha}_{2}\right)}{f\left(X_{2}\right)-\tilde{\alpha}_{2}}+\frac{Ũ\left(\tilde{\alpha}_{3}\right)}{f\left(X_{3}\right)-\tilde{\alpha}_{3}}+...+\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\right)=0
+\frac{\partial}{\partial\tilde{\alpha}_{n}}\left(\frac{Ũ\left(\tilde{\alpha}_{1}\right)}{f\left(X_{1}\right)-\tilde{\alpha}_{1}}+\frac{Ũ\left(\tilde{\alpha}_{2}\right)}{f\left(X_{2}\right)-\tilde{\alpha}_{2}}+\frac{Ũ\left(\tilde{\alpha}_{3}\right)}{f\left(X_{3}\right)-\tilde{\alpha}_{3}}+...+\frac{Ũ\left(\tilde{\alpha}_{n}\right)}{f\left(X_{n}\right)-\tilde{\alpha}_{n}}\right)=0
 \]
 
 \end_inset
@@ -179,7 +179,8 @@ Expanding, we see:
 
 \begin_layout Standard
 As the series expand, only one term in the series is dependent on the correspond
-ing index of alpha:
+ing index of alpha.
+ Taking the derivative with respect to a constant yields zero, so:
 \end_layout
 
 \begin_layout Standard
@@ -408,14 +409,14 @@ Our solution is to use Gauss-Newton, which achieves linearisation through
 \end_layout
 
 \begin_layout Standard
-The Newton-Gauss method, we exploit this linearisation to solve the system
- for 
-\begin_inset Formula $a,b$
-\end_inset
-
- using matlab's 
+Gauss-Newton is a type of fixed point iterative method.
+ By linearisation, each equation in the system corresponds geometrically
+ to a plane (though number of dimensions may vary.) At each iteration, we
+ exploit the linearisation to solve the system for the coefficients using
+ matlab's 
 \backslash
--operator.
+-operator, and update the coefficients with the residual, until the residual
+ is smaller than a set tolerance.
 \end_layout
 
 \begin_layout Subsection*
@@ -581,7 +582,16 @@ Find the maximum relative error in
 \begin_inset Formula $\frac{\Delta\alpha}{\alpha}$
 \end_inset
 
+, given relative errors in 
+\begin_inset Formula $U$
+\end_inset
 
+ and 
+\begin_inset Formula $U^{\prime}$
+\end_inset
+
+.
+ First, rearrange our equation:
 \end_layout
 
 \begin_layout Standard
@@ -596,7 +606,37 @@ f\left(X_{n}\right)-\tilde{\alpha}_{n}=\frac{-Ũ\left(\tilde{\alpha}_{n}\right)}
 \end_layout
 
 \begin_layout Standard
-Linearisation:
+From the definition of partial derivatives, we remember that linearisation
+ means 
+\begin_inset Quotes eld
+\end_inset
+
+variation in 
+\begin_inset Formula $z$
+\end_inset
+
+ depending on variation of 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+ when 
+\begin_inset Formula $z=f(x,y)$
+\end_inset
+
+ - this would also be the equation of a tangent plane to 
+\begin_inset Formula $z=f(x,y)$
+\end_inset
+
+.
+ We recognize our problem of finding dependent errors as being similar:
 \end_layout
 
 \begin_layout Standard
@@ -611,6 +651,10 @@ Linearisation:
 \end_layout
 
 \begin_layout Standard
+After finding partial derivatives, and the given relative errors:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \begin{array}{ccccc}
@@ -620,6 +664,14 @@ Linearisation:
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+the problem of solving for 
+\begin_inset Formula $\frac{\Delta\alpha}{\alpha}$
+\end_inset
+
+ is now a matter of algebra:
 \end_layout
 
 \begin_layout Standard
@@ -778,8 +830,8 @@ Our solution to the differential in the constraint condition is to use euler
 \begin_inset Formula $\Delta t$
 \end_inset
 
-, the integral transforms into a sum, and the differential becomes the sum
- 
+, the integral transforms into a riemann-sum, the constraint turns into
+ an euler approximation:
 \end_layout
 
 \begin_layout Standard

@@ -780,7 +780,7 @@ Where
 \begin_inset Formula $X(t)$
 \end_inset
 
- is our production funtion.
+ is our production function.
 \end_layout
 
 \begin_layout Standard
@@ -869,7 +869,8 @@ X_{n+1} & = & X_{n}+\Delta t\left(f(X_{n})-\alpha_{n}\right)
 \end_layout
 
 \begin_layout Standard
-Since this gives us 
+suitable for an iterative algorithm.
+ Since this gives us 
 \begin_inset Formula $U^{\prime}=\lambda_{n+1}$
 \end_inset
 
@@ -877,7 +878,7 @@ Since this gives us
 \begin_inset Formula $\alpha$
 \end_inset
 
- as function of 
+ as a function of 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1218,12 +1219,12 @@ Algorithms such as euler approximation cause mathematical errors relative
 \end_inset
 
 .
- Trapezoid has an error on the order of 
+ Trapezoid would have an error on the order of 
 \begin_inset Formula $O\left(\frac{1}{n^{2}}\right)$
 \end_inset
 
 .
- These can be derived through taylor approximation.
+ These can be derived through the taylor series.
 \end_layout
 
 \begin_layout Standard
@@ -1249,9 +1250,8 @@ Comparison
 
 \begin_layout Standard
 The biggest source of error in our lagrange system is likely truncation
- from large stepsizes.
- Meanwhile, precision and accuracy is probably adequate will compared to
- reliability of the input data.
+ from large stepsizes, but precision and accuracy is probably adequate when
+ compared to reliability of the input data and intended use of the output.
 \end_layout
 
 \begin_layout Paragraph*
@@ -1259,24 +1259,21 @@ Experimental error analysis and condition numbers
 \end_layout
 
 \begin_layout Standard
-We test the optimization method from section 4, by adding errors 
-\begin_inset Formula $erra$
-\end_inset
-
- and 
-\begin_inset Formula $errb$
-\end_inset
-
- to the coefficients of the production function 
+We test the optimization method from section 4, by distorting value of the
+ production function 
 \begin_inset Formula $aX+bX^{2}$
 \end_inset
 
+ with 
+\begin_inset Formula $err\%$
+\end_inset
+
 .
- The red/dashed line is the 
+ The red/dashed lines are the 
 \begin_inset Formula $\alpha$
 \end_inset
 
--plot corresponding to the error.
+-plots corresponding to the test.
  We get a visual impression of the 
 \begin_inset Quotes eld
 \end_inset
@@ -1285,12 +1282,22 @@ condition
 \begin_inset Quotes erd
 \end_inset
 
- of the optimization algorithm.
- We see condition numbers 
+ of the optimization method, and we see the error bounds.
+ At worst, when 
+\begin_inset Formula $t=1$
+\end_inset
+
+, we see condition numbers 
 \begin_inset Formula $\left(\frac{err_{out}}{err_{in}}\right)$
 \end_inset
 
-, at worst, close to one.
+ close to one, but we also observe that the condition-number grows fast
+ with time.
+ This method would not be reliable if we extended 
+\begin_inset Formula $t$
+\end_inset
+
+ much further beyond 1.
 \end_layout
 
 \begin_layout Standard

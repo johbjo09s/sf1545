@@ -9,16 +9,18 @@ function y = N_STEPS
   y = 30
 endfunction
 
-function y = f_Xb2 (x, erra=0, errb=0)
-  a = 1.0709 + erra
-  b = 0.061849 + errb
+function y = f_Xb2 (x, err=0)
+  a = 1.0709
+  b = 0.061849
   y = a*x + b*(x^2)
+  y = y*(1+err)
 endfunction
 
-function y = fp_Xb2 (x, erra=0, errb=0)
-  a = 1.0709 + erra
-  b = 0.061849 + errb
+function y = fp_Xb2 (x, err=0)
+  a = 1.0709
+  b = 0.061849
   y = a + 2*b*(x)
+  y = y*(1+err)
 endfunction
 
 function y = f_X2 (x)
@@ -170,56 +172,61 @@ endfunction
 doB4()
 
 function doB4_errors()
-  erra=0; errb = 0;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
-
+  _f_X = @(x) f_Xb2(x)
+  _fp_X = @(x) fp_Xb2(x)
   solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2", 0)
 
-  erra=0.1; errb = 0.1;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
+  err=0.1;
+  _f_X = @(x) f_Xb2(x, err)
+  _fp_X = @(x) fp_Xb2(x, err)
+  solveLagrangeSystem(_f_X, _fp_X, "", 0, 1)
 
-  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, erra=0.1, errb=0.1", 0, 1)
+  _f_X = @(x) f_Xb2(x, -err)
+  _fp_X = @(x) fp_Xb2(x, -err)
+  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, err=10%", 0, 1)
   print -depsc lab1_b4_err1.eps
 
-  erra=0; errb = 0;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
-
+  _f_X = @(x) f_Xb2(x)
+  _fp_X = @(x) fp_Xb2(x)
   solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2", 0)
 
-  erra=0.2; errb = 0.2;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
+  err=0.2;
+  _f_X = @(x) f_Xb2(x, err)
+  _fp_X = @(x) fp_Xb2(x, err)
+  solveLagrangeSystem(_f_X, _fp_X, "", 0, 1)
 
-  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, erra=0.2, errb=0.2", 0, 1)
+  _f_X = @(x) f_Xb2(x, -err)
+  _fp_X = @(x) fp_Xb2(x, -err)
+  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, err=20%", 0, 1)
   print -depsc lab1_b4_err2.eps
 
-  erra=0; errb = 0;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
-
+  _f_X = @(x) f_Xb2(x)
+  _fp_X = @(x) fp_Xb2(x)
   solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2", 0)
 
-  erra=-0.2; errb = -0.2;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
+  err=0.3;
+  _f_X = @(x) f_Xb2(x, err)
+  _fp_X = @(x) fp_Xb2(x, err)
+  solveLagrangeSystem(_f_X, _fp_X, "", 0, 1)
 
-  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, erra=-0.2, errb=0.2", 0, 1)
+  _f_X = @(x) f_Xb2(x, -err)
+  _fp_X = @(x) fp_Xb2(x, -err)
+  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, err=30%", 0, 1)
   print -depsc lab1_b4_err3.eps
 
-  erra=0; errb = 0;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
-
+  _f_X = @(x) f_Xb2(x)
+  _fp_X = @(x) fp_Xb2(x)
   solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2", 0)
 
-  erra=-0.3; errb = -0.3;
-  _f_X = @(x) f_Xb2(x, erra, errb)
-  _fp_X = @(x) fp_Xb2(x, erra, errb)
+  err=0.4;
+  _f_X = @(x) f_Xb2(x, err)
+  _fp_X = @(x) fp_Xb2(x, err)
 
-  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, erra=-0.3, errb=-0.3", 0, 1)
+  solveLagrangeSystem(_f_X, _fp_X, "", 0, 1)
+
+  _f_X = @(x) f_Xb2(x, -err)
+  _fp_X = @(x) fp_Xb2(x, -err)
+  solveLagrangeSystem(_f_X, _fp_X, "f(X) from B2, err=40%", 0, 1)
   print -depsc lab1_b4_err4.eps
 
 endfunction
